@@ -104,10 +104,12 @@ def cut_photo():
     # C:\Users\Elephant\Desktop\pymycobot+opencv\local_photo/takephoto.jpeg
 
     # 选择ROI
+    print("框选图像区域后，请按空格或Enter键继续\nSelect a ROI and then press SPACE or ENTER button")
     roi = cv2.selectROI(windowName="original",
                         img=cut,
                         showCrosshair=False,
-                        fromCenter=False)
+                        fromCenter=False,
+                        printNotice=False)
     x, y, w, h = roi
     print(roi)
 
@@ -120,6 +122,8 @@ def cut_photo():
         """
     print(msg)
     kw = int(input("请输入保存图片文件夹数字编号(Please enter the number of the folder to save the picture):"))
+    while not 0 < kw < 5:
+        kw = int(input("数字应为1、2、3、4中的一个(The number should be one of 1, 2, 3, or 4):"))
     # print(kw)
 
     # 显示ROI并保存图片
@@ -145,6 +149,7 @@ def cut_photo():
             print('Saved')
 
     # 退出
+    print("打开opencv窗口并按任意键退出程序\nopen opencv window and press any key to exit the program")
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
